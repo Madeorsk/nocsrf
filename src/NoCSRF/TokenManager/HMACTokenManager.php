@@ -92,9 +92,15 @@ class HMACTokenManager extends TokenManager
 	{
 		// Getting token generation time.
 		$dotpos = strrpos($token, ".");
-		$token_time = substr($token, $dotpos + 1);
 
-		// If the given token and generated token are the same, the token is verified.
-		return $token == $this->generateToken($key, $token_time);
+		if ($dotpos && $dotpos + 1 > strlen($token))
+		{ // If a dot has been found and is not a the end of the token string.
+			$token_time = substr($token, $dotpos + 1);
+
+			// If the given token and generated token are the same, the token is verified.
+			return $token == $this->generateToken($key, $token_time);
+		}
+		else // No dot have been found or is at the end of the token string, the token is invalid.
+			return false;
 	}
 }
