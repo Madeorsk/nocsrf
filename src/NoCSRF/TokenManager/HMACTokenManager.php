@@ -93,7 +93,7 @@ class HMACTokenManager extends TokenManager
 		// Getting token generation time.
 		$dotpos = strrpos($token, ".");
 
-		if ($dotpos && $dotpos + 1 > strlen($token))
+		if ($dotpos && $dotpos + 1 < strlen($token))
 		{ // If a dot has been found and is not a the end of the token string.
 			$token_time = substr($token, $dotpos + 1);
 
