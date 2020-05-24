@@ -122,12 +122,30 @@ class NoCSRF
 	}
 
 	/**
+	 * Try to find token in POST data or request headers.
+	 * @return string - A found token, empty string if no token found.
+	 */
+	protected function tryToFindToken(): string
+	{
+		if (!empty($_POST["_csrfToken"]))
+			// A token has been found in the POST data.
+			return $_POST["_csrfToken"];
+
+		elseif (!empty($_REQUEST["HTTP_X_CSRF_TOKEN"]))
+			// A token has been found in the HTTP request headers.
+			return $_REQUEST["HTTP_X_CSRF_TOKEN"];
+
+		return ""; // Default token: empty string.
+	}
+	/**
 	 * Verify token.
-	 * @param string $token - The token to verify.
+	 * @param string|null $token - The token to verify. If NULL, NoCSRF will try to find the CSRF token in `_csrfToken` POST value or in `X-CSRF-Token` request header. NULL by default.
 	 * @return bool
 	 */
-	public function verify(string $token): bool
+	public function verify(?string $token = null): bool
 	{ // Verifying token in the token manager using the loaded key.
-		return $this->tokenManager->verifyToken($token, $this->getKey());
+		return $this->tokenManager->verifyToken(
+			!empty($token) ? $token : $this->tryToFindToken(), // If the token has not been provided in parameter, trying to find it.
+			$this->getKey()); // Getting key.
 	}
 }
