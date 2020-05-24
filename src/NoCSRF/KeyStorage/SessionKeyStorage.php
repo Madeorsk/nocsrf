@@ -55,7 +55,7 @@ class SessionKeyStorage extends KeyStorage
 	 * @inheritDoc
 	 * @throws SessionNotActiveException
 	 */
-	public function read(): string
+	public function read(): ?string
 	{ // Reading key from session.
 		return $this->session->read($this->sessionVariableName);
 	}

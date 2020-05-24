@@ -21,5 +21,5 @@ abstract class KeyStorage
 	 * Read the key from storage.
 	 * @return string - The read key.
 	 */
-	public abstract function read(): string;
+	public abstract function read(): ?string;
 }

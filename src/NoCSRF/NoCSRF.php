@@ -57,7 +57,7 @@ class NoCSRF
 		// Loading configuration from the default configuration, overriding it by the given configuration.
 		foreach ($defaultConfig as $key => $value)
 			// Setting each value to the default value if it does not exists in the given configuration.
-			$this->{$key} = !empty($config[$key]) ? $value : $config[$key];
+			$this->{$key} = empty($config[$key]) ? $value : $config[$key];
 	}
 
 	/**
