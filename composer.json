@@ -3,23 +3,27 @@
     "type": "library",
     "description": "CSRF Protection Library.",
 
-    "keywords":["csrf","token","security"],
-    "homepage":"https://github.com/madeorsk/csrf",
-    "license":"MIT",
+    "keywords": ["csrf","token","security"],
+    "homepage": "https://github.com/madeorsk/csrf",
+    "license": "MIT",
     
-    "authors":[
+    "authors": [
         {
-            "name":"Madeorsk",
-            "email":"madeorsk@protonmail.com",
+            "name": "Madeorsk",
+            "email": "madeorsk@protonmail.com",
             "homepage":"https://madeorsk.com"
         }
     ],
-    "require":{
-        "php":">= 7.0"
+
+    "minimum-stability": "stable",
+    "require": {
+        "php": ">= 7.0",
+        "madeorsk/session": "^1.0"
     },
     "require-dev": {
         "phpunit/phpunit": "^9"
     },
+
     "autoload": {
         "psr-4": {
             "NoCSRF\\": "src/NoCSRF"

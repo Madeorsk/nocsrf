@@ -1,5 +1,6 @@
 composer.phar
 /vendor/
-composer.lock # NoCSRF is a library, we do not need to commit the composer.lock file.
+# NoCSRF is a library, we do not need to commit the composer.lock file.
+composer.lock
 
 *.iml
