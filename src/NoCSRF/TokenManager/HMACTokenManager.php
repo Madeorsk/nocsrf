@@ -4,8 +4,8 @@
 namespace NoCSRF\TokenManager;
 
 
-use NoCSRF\Exceptions\SessionException;
-use NoCSRF\Session;
+use Session\Exceptions\SessionException;
+use Session\Session;
 
 /**
  * HMAC token manager class.
@@ -96,6 +96,8 @@ class HMACTokenManager extends TokenManager
 		if ($dotpos && $dotpos + 1 < strlen($token))
 		{ // If a dot has been found and is not a the end of the token string.
 			$token_time = substr($token, $dotpos + 1);
+
+			//TODO Check that the token is not too old (one hour lifetime by default should be enough).
 
 			// If the given token and generated token are the same, the token is verified.
 			return $token == $this->generateToken($key, $token_time);

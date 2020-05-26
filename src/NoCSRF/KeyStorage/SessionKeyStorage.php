@@ -4,8 +4,8 @@
 namespace NoCSRF\KeyStorage;
 
 
-use NoCSRF\Exceptions\SessionNotActiveException;
-use NoCSRF\Session;
+use Session\Exceptions\SessionNotActiveException;
+use Session\Session;
 
 /**
  * Session key storage.
