@@ -131,9 +131,9 @@ class NoCSRF
 			// A token has been found in the POST data.
 			return $_POST["_csrfToken"];
 
-		elseif (!empty($_REQUEST["HTTP_X_CSRF_TOKEN"]))
+		elseif (!empty($_SERVER["HTTP_X_CSRF_TOKEN"]))
 			// A token has been found in the HTTP request headers.
-			return $_REQUEST["HTTP_X_CSRF_TOKEN"];
+			return $_SERVER["HTTP_X_CSRF_TOKEN"];
 
 		return ""; // Default token: empty string.
 	}
